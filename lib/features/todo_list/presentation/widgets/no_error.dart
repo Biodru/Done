@@ -2,9 +2,7 @@ import 'package:done/features/todo_list/presentation/widgets/filter_button.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:done/config/theme/main_theme.dart';
 import 'package:done/features/todo_list/presentation/cubit/task_list_cubit/task_list_cubit.dart';
-import 'package:done/features/todo_list/presentation/widgets/add_task_modal.dart';
 import 'package:done/features/todo_list/presentation/widgets/no_items.dart';
 import 'package:done/features/todo_list/presentation/widgets/todo_tile.dart';
 import 'package:done/features/user_context/presentation/cubit/cubit/user_context_cubit.dart';
@@ -59,37 +57,37 @@ class NoErrorState extends StatelessWidget {
                   ),
                 ],
               ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: SizedBox(
-            width: 50,
-            height: 50,
-            child: FloatingActionButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              backgroundColor: MainTheme.accent,
-              onPressed: () {
-                showModalBottomSheet<void>(
-                    context: context,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0),
-                    ),
-                    backgroundColor: MainTheme.backgroundColor,
-                    builder: (BuildContext context) {
-                      return AddTaskModal(
-                        userContextCubit: contextCubit,
-                        cubit: cubit,
-                      );
-                    });
-              },
-              child: const Icon(
-                Icons.add,
-                color: MainTheme.primary,
-              ),
-            ),
-          ),
-        ),
+        // Align(
+        //   alignment: Alignment.bottomCenter,
+        //   child: SizedBox(
+        //     width: 50,
+        //     height: 50,
+        //     child: FloatingActionButton(
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(16),
+        //       ),
+        //       backgroundColor: MainTheme.accent,
+        //       onPressed: () {
+        //         showModalBottomSheet<void>(
+        //             context: context,
+        //             shape: RoundedRectangleBorder(
+        //               borderRadius: BorderRadius.circular(16.0),
+        //             ),
+        //             backgroundColor: MainTheme.backgroundColor,
+        //             builder: (BuildContext context) {
+        //               return AddTaskModal(
+        //                 userContextCubit: contextCubit,
+        //                 cubit: cubit,
+        //               );
+        //             });
+        //       },
+        //       child: const Icon(
+        //         Icons.add,
+        //         color: MainTheme.primary,
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

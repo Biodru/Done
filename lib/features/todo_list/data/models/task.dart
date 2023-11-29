@@ -18,14 +18,15 @@ class Task {
   final TaskPriority? priority;
   bool isDone;
 
-  Task(
-      {required this.id,
-      this.title,
-      this.userContextId,
-      this.chosenColor,
-      this.date,
-      this.priority,
-      this.isDone = false});
+  Task({
+    required this.id,
+    this.title,
+    this.userContextId,
+    this.chosenColor,
+    this.date,
+    this.priority,
+    this.isDone = false,
+  });
 
   Task copyWith(
           {int? id,

@@ -1,3 +1,4 @@
+import 'package:done/config/theme/main_theme.dart';
 import 'package:done/core/util/date_utils.dart';
 import 'package:done/features/todo_list/data/models/task.dart';
 import 'package:done/features/todo_list/presentation/cubit/task_cubit/task_cubit.dart';
@@ -44,8 +45,17 @@ class TodoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userContextCubit = context.watch<UserContextCubit>();
-    return SizedBox(
+    return Container(
       height: 100,
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+          color: task.chosenColor?.withOpacity(0.3) ??
+              MainTheme.primary.withOpacity(0.5),
+          spreadRadius: 2,
+          blurRadius: 20,
+          offset: const Offset(0, 10), // changes position of shadow
+        ),
+      ]),
       child: BlocProvider<TaskCubit>(
         create: (context) => TaskCubit(),
         child: BlocBuilder<TaskCubit, TaskState>(

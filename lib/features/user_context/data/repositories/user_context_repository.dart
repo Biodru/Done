@@ -6,19 +6,12 @@ class UserContextRepository {
 
 //TODO: Remove TestUser
 //TODO: Remove hardcoded Strings
-//TODO: Remove prints
   Future<List<UserContext>> getTasks() async {
     final collection = await firestore
         .collection('UserData')
         .doc('TestUser')
         .collection('UserContext')
         .get();
-
-    if (collection.docs.isNotEmpty) {
-      print(collection.docs.length);
-    } else {
-      print('No data available.');
-    }
     return collection.docs.map((e) => UserContext.fromJson(e.data())).toList();
   }
 
