@@ -70,11 +70,11 @@ class _$UserContextStateCopyWithImpl<$Res, $Val extends UserContextState>
 }
 
 /// @nodoc
-abstract class _$$_UserContextStateCopyWith<$Res>
+abstract class _$$UserContextStateImplCopyWith<$Res>
     implements $UserContextStateCopyWith<$Res> {
-  factory _$$_UserContextStateCopyWith(
-          _$_UserContextState value, $Res Function(_$_UserContextState) then) =
-      __$$_UserContextStateCopyWithImpl<$Res>;
+  factory _$$UserContextStateImplCopyWith(_$UserContextStateImpl value,
+          $Res Function(_$UserContextStateImpl) then) =
+      __$$UserContextStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -82,11 +82,11 @@ abstract class _$$_UserContextStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UserContextStateCopyWithImpl<$Res>
-    extends _$UserContextStateCopyWithImpl<$Res, _$_UserContextState>
-    implements _$$_UserContextStateCopyWith<$Res> {
-  __$$_UserContextStateCopyWithImpl(
-      _$_UserContextState _value, $Res Function(_$_UserContextState) _then)
+class __$$UserContextStateImplCopyWithImpl<$Res>
+    extends _$UserContextStateCopyWithImpl<$Res, _$UserContextStateImpl>
+    implements _$$UserContextStateImplCopyWith<$Res> {
+  __$$UserContextStateImplCopyWithImpl(_$UserContextStateImpl _value,
+      $Res Function(_$UserContextStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +96,7 @@ class __$$_UserContextStateCopyWithImpl<$Res>
     Object? contextList = null,
     Object? isLoading = null,
   }) {
-    return _then(_$_UserContextState(
+    return _then(_$UserContextStateImpl(
       currentContextId: freezed == currentContextId
           ? _value.currentContextId
           : currentContextId // ignore: cast_nullable_to_non_nullable
@@ -115,8 +115,8 @@ class __$$_UserContextStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserContextState extends _UserContextState {
-  const _$_UserContextState(
+class _$UserContextStateImpl extends _UserContextState {
+  const _$UserContextStateImpl(
       {this.currentContextId = null,
       final List<UserContext> contextList = const [],
       this.isLoading = true})
@@ -148,7 +148,7 @@ class _$_UserContextState extends _UserContextState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserContextState &&
+            other is _$UserContextStateImpl &&
             (identical(other.currentContextId, currentContextId) ||
                 other.currentContextId == currentContextId) &&
             const DeepCollectionEquality()
@@ -164,15 +164,16 @@ class _$_UserContextState extends _UserContextState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserContextStateCopyWith<_$_UserContextState> get copyWith =>
-      __$$_UserContextStateCopyWithImpl<_$_UserContextState>(this, _$identity);
+  _$$UserContextStateImplCopyWith<_$UserContextStateImpl> get copyWith =>
+      __$$UserContextStateImplCopyWithImpl<_$UserContextStateImpl>(
+          this, _$identity);
 }
 
 abstract class _UserContextState extends UserContextState {
   const factory _UserContextState(
       {final int? currentContextId,
       final List<UserContext> contextList,
-      final bool isLoading}) = _$_UserContextState;
+      final bool isLoading}) = _$UserContextStateImpl;
   const _UserContextState._() : super._();
 
   @override
@@ -183,6 +184,6 @@ abstract class _UserContextState extends UserContextState {
   bool get isLoading;
   @override
   @JsonKey(ignore: true)
-  _$$_UserContextStateCopyWith<_$_UserContextState> get copyWith =>
+  _$$UserContextStateImplCopyWith<_$UserContextStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -56,21 +56,22 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
 }
 
 /// @nodoc
-abstract class _$$_TaskStateCopyWith<$Res> implements $TaskStateCopyWith<$Res> {
-  factory _$$_TaskStateCopyWith(
-          _$_TaskState value, $Res Function(_$_TaskState) then) =
-      __$$_TaskStateCopyWithImpl<$Res>;
+abstract class _$$TaskStateImplCopyWith<$Res>
+    implements $TaskStateCopyWith<$Res> {
+  factory _$$TaskStateImplCopyWith(
+          _$TaskStateImpl value, $Res Function(_$TaskStateImpl) then) =
+      __$$TaskStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isDone});
 }
 
 /// @nodoc
-class __$$_TaskStateCopyWithImpl<$Res>
-    extends _$TaskStateCopyWithImpl<$Res, _$_TaskState>
-    implements _$$_TaskStateCopyWith<$Res> {
-  __$$_TaskStateCopyWithImpl(
-      _$_TaskState _value, $Res Function(_$_TaskState) _then)
+class __$$TaskStateImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$TaskStateImpl>
+    implements _$$TaskStateImplCopyWith<$Res> {
+  __$$TaskStateImplCopyWithImpl(
+      _$TaskStateImpl _value, $Res Function(_$TaskStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -78,7 +79,7 @@ class __$$_TaskStateCopyWithImpl<$Res>
   $Res call({
     Object? isDone = null,
   }) {
-    return _then(_$_TaskState(
+    return _then(_$TaskStateImpl(
       isDone: null == isDone
           ? _value.isDone
           : isDone // ignore: cast_nullable_to_non_nullable
@@ -89,8 +90,8 @@ class __$$_TaskStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TaskState extends _TaskState {
-  const _$_TaskState({this.isDone = true}) : super._();
+class _$TaskStateImpl extends _TaskState {
+  const _$TaskStateImpl({this.isDone = true}) : super._();
 
   @override
   @JsonKey()
@@ -105,7 +106,7 @@ class _$_TaskState extends _TaskState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TaskState &&
+            other is _$TaskStateImpl &&
             (identical(other.isDone, isDone) || other.isDone == isDone));
   }
 
@@ -115,18 +116,18 @@ class _$_TaskState extends _TaskState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TaskStateCopyWith<_$_TaskState> get copyWith =>
-      __$$_TaskStateCopyWithImpl<_$_TaskState>(this, _$identity);
+  _$$TaskStateImplCopyWith<_$TaskStateImpl> get copyWith =>
+      __$$TaskStateImplCopyWithImpl<_$TaskStateImpl>(this, _$identity);
 }
 
 abstract class _TaskState extends TaskState {
-  const factory _TaskState({final bool isDone}) = _$_TaskState;
+  const factory _TaskState({final bool isDone}) = _$TaskStateImpl;
   const _TaskState._() : super._();
 
   @override
   bool get isDone;
   @override
   @JsonKey(ignore: true)
-  _$$_TaskStateCopyWith<_$_TaskState> get copyWith =>
+  _$$TaskStateImplCopyWith<_$TaskStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

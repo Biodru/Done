@@ -79,11 +79,11 @@ class _$TaskListStateCopyWithImpl<$Res, $Val extends TaskListState>
 }
 
 /// @nodoc
-abstract class _$$_TaskListStateCopyWith<$Res>
+abstract class _$$TaskListStateImplCopyWith<$Res>
     implements $TaskListStateCopyWith<$Res> {
-  factory _$$_TaskListStateCopyWith(
-          _$_TaskListState value, $Res Function(_$_TaskListState) then) =
-      __$$_TaskListStateCopyWithImpl<$Res>;
+  factory _$$TaskListStateImplCopyWith(
+          _$TaskListStateImpl value, $Res Function(_$TaskListStateImpl) then) =
+      __$$TaskListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -94,11 +94,11 @@ abstract class _$$_TaskListStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TaskListStateCopyWithImpl<$Res>
-    extends _$TaskListStateCopyWithImpl<$Res, _$_TaskListState>
-    implements _$$_TaskListStateCopyWith<$Res> {
-  __$$_TaskListStateCopyWithImpl(
-      _$_TaskListState _value, $Res Function(_$_TaskListState) _then)
+class __$$TaskListStateImplCopyWithImpl<$Res>
+    extends _$TaskListStateCopyWithImpl<$Res, _$TaskListStateImpl>
+    implements _$$TaskListStateImplCopyWith<$Res> {
+  __$$TaskListStateImplCopyWithImpl(
+      _$TaskListStateImpl _value, $Res Function(_$TaskListStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,7 +109,7 @@ class __$$_TaskListStateCopyWithImpl<$Res>
     Object? dateFilterCounter = null,
     Object? priorityFilterCounter = null,
   }) {
-    return _then(_$_TaskListState(
+    return _then(_$TaskListStateImpl(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -132,8 +132,8 @@ class __$$_TaskListStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TaskListState extends _TaskListState {
-  const _$_TaskListState(
+class _$TaskListStateImpl extends _TaskListState {
+  const _$TaskListStateImpl(
       {this.isLoading = true,
       final List<Task> items = const [],
       this.dateFilterCounter = 0,
@@ -169,7 +169,7 @@ class _$_TaskListState extends _TaskListState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TaskListState &&
+            other is _$TaskListStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             const DeepCollectionEquality().equals(other._items, _items) &&
@@ -190,8 +190,8 @@ class _$_TaskListState extends _TaskListState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TaskListStateCopyWith<_$_TaskListState> get copyWith =>
-      __$$_TaskListStateCopyWithImpl<_$_TaskListState>(this, _$identity);
+  _$$TaskListStateImplCopyWith<_$TaskListStateImpl> get copyWith =>
+      __$$TaskListStateImplCopyWithImpl<_$TaskListStateImpl>(this, _$identity);
 }
 
 abstract class _TaskListState extends TaskListState {
@@ -199,7 +199,7 @@ abstract class _TaskListState extends TaskListState {
       {final bool isLoading,
       final List<Task> items,
       final int dateFilterCounter,
-      final int priorityFilterCounter}) = _$_TaskListState;
+      final int priorityFilterCounter}) = _$TaskListStateImpl;
   const _TaskListState._() : super._();
 
   @override
@@ -212,6 +212,6 @@ abstract class _TaskListState extends TaskListState {
   int get priorityFilterCounter;
   @override
   @JsonKey(ignore: true)
-  _$$_TaskListStateCopyWith<_$_TaskListState> get copyWith =>
+  _$$TaskListStateImplCopyWith<_$TaskListStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

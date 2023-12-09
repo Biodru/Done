@@ -1,4 +1,4 @@
-import 'package:done/features/todo_list/presentation/pages/todo_list_page.dart';
+import 'package:done/features/bottom_bar/presentation/home_page.dart';
 import 'package:done/features/user_context/presentation/cubit/cubit/user_context_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           buildWhen: (previous, current) =>
               previous.currentContextId != current.currentContextId,
           builder: (context, state) {
-            return const TodoListPage();
+            return const HomePage();
           },
         ),
       ),
