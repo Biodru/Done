@@ -10,14 +10,6 @@ part 'task.g.dart';
 @CustomTimestampConverter()
 @CustomPriorityConverter()
 class Task {
-  final int id;
-  final String? title;
-  final int? userContextId;
-  final Color? chosenColor;
-  final DateTime? date;
-  final TaskPriority? priority;
-  bool isDone;
-
   Task({
     required this.id,
     this.title,
@@ -28,6 +20,13 @@ class Task {
     this.isDone = false,
   });
 
+  final int id;
+  final String? title;
+  final int? userContextId;
+  final Color? chosenColor;
+  final DateTime? date;
+  final TaskPriority? priority;
+  bool isDone;
   Task copyWith(
           {int? id,
           String? title,

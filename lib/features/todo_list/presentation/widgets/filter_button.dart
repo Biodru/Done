@@ -1,12 +1,7 @@
 import 'package:done/config/theme/main_theme.dart';
 import 'package:flutter/material.dart';
 
-class FilterButton extends StatelessWidget {
-  final int counter;
-  final IconData icon;
-  final String buttonTitle;
-  final VoidCallback sortAction;
-
+class FilterButton extends StatefulWidget {
   const FilterButton({
     Key? key,
     required this.counter,
@@ -15,34 +10,45 @@ class FilterButton extends StatelessWidget {
     required this.sortAction,
   }) : super(key: key);
 
+  final int counter;
+  final IconData icon;
+  final String buttonTitle;
+  final VoidCallback sortAction;
+
+  @override
+  State<FilterButton> createState() => _FilterButtonState();
+}
+
+class _FilterButtonState extends State<FilterButton> {
+  double _turns = 0;
   @override
   Widget build(BuildContext context) {
     return OutlinedButton.icon(
       onPressed: () {
-        sortAction();
+        widget.sortAction();
+        if (widget.counter >= 1) {
+          setState(() => _turns += 0.5);
+        }
       },
       icon: Icon(
-        icon,
+        widget.icon,
         color: MainTheme.secondary,
       ),
       label: Row(
         children: [
           Text(
-            buttonTitle,
+            widget.buttonTitle,
             style: const TextStyle(color: MainTheme.secondary),
           ),
-          counter != 0
-              ? (counter == 1
-                  ? const Icon(
-                      Icons.arrow_upward,
-                      color: MainTheme.secondary,
-                    )
-                  : counter == 2
-                      ? const Icon(
-                          Icons.arrow_downward,
-                          color: MainTheme.secondary,
-                        )
-                      : const SizedBox())
+          widget.counter != 0
+              ? AnimatedRotation(
+                  duration: const Duration(milliseconds: 360),
+                  turns: _turns,
+                  child: const Icon(
+                    Icons.arrow_upward,
+                    color: MainTheme.secondary,
+                  ),
+                )
               : const SizedBox(),
         ],
       ),

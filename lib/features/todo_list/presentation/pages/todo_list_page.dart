@@ -19,14 +19,22 @@ class TodoListPage extends StatelessWidget {
             return BlocProvider<TaskListCubit>(
               create: (context) =>
                   TaskListCubit(userContextCubit.state.currentContextId),
-              child: BlocBuilder<TaskListCubit, TaskListState>(
-                buildWhen: (previous, current) =>
-                    previous.isLoading != current.isLoading ||
-                    previous.items != current.items,
-                builder: (context, state) => state.isLoading
-                    ? const LoadingView()
-                    : const NoErrorState(),
-              ),
+              child: Builder(builder: (context) {
+                final cubit = context.watch<TaskListCubit>();
+                return Column(
+                  children: [
+                    TasksFilterRow(
+                        cubit: cubit, contextCubit: userContextCubit),
+                    BlocBuilder<TaskListCubit, TaskListState>(
+                      buildWhen: (previous, current) =>
+                          previous.isLoading != current.isLoading,
+                      builder: (context, state) => state.isLoading
+                          ? const LoadingView()
+                          : const NoErrorState(),
+                    ),
+                  ],
+                );
+              }),
             );
           },
         ),
