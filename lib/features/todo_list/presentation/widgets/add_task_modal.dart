@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class AddTaskModal extends StatefulWidget {
-  final UserContextCubit userContextCubit;
-  final TaskListCubit cubit;
   const AddTaskModal({
     Key? key,
     required this.userContextCubit,
     required this.cubit,
   }) : super(key: key);
+
+  final UserContextCubit userContextCubit;
+  final TaskListCubit cubit;
 
   @override
   State<AddTaskModal> createState() => _AddTaskModalState();
