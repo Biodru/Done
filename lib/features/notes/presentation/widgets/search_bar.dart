@@ -49,7 +49,7 @@ class _AnimatedSearchBarState extends State<AnimatedSearchBar> {
       width: _folded ? 58 : MediaQuery.of(context).size.width,
       height: 56,
       decoration: BoxDecoration(
-        color: MainTheme.backgroundColor,
+        color: Theme.of(context).colorScheme.background,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: MainTheme.secondary,

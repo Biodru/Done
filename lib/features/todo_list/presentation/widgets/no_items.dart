@@ -10,9 +10,9 @@ class NoItems extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          const Icon(
+          Icon(
             Icons.list,
-            color: Color(0xffFFD966),
+            color: Theme.of(context).colorScheme.onErrorContainer,
           ),
           Text(errorMessage),
         ],

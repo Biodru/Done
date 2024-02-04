@@ -17,8 +17,8 @@ class AppBarWidget extends StatelessWidget {
         style: const TextStyle(color: MainTheme.secondary),
       ),
       iconTheme: const IconThemeData(color: MainTheme.secondary),
-      elevation: 1,
-      backgroundColor: MainTheme.backgroundColor,
+      elevation: 5,
+      backgroundColor: Theme.of(context).colorScheme.background,
     );
   }
 }

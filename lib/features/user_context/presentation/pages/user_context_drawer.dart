@@ -13,25 +13,29 @@ class UserContextDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.watch<UserContextCubit>();
     return Drawer(
-      backgroundColor: MainTheme.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
+            Text(
               'Wybór profilu',
-              style: TextStyle(color: MainTheme.secondary, fontSize: 24),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: 24,
+              ),
               textAlign: TextAlign.center,
             ),
             ContextTile(
-                userContext: null,
-                onTap: () {
-                  cubit.changeContext(null);
-                },
-                selectedContext: cubit.state.currentContextId == null),
+              userContext: null,
+              onTap: () {
+                cubit.changeContext(null);
+              },
+              selectedContext: cubit.state.currentContextId == null,
+            ),
             cubit.state.isLoading
-                ? const CircularProgressIndicator(
-                    backgroundColor: MainTheme.primary,
+                ? CircularProgressIndicator(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                   )
                 : Column(
                     children: cubit.state.contextList
@@ -56,23 +60,25 @@ class UserContextDrawer extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  backgroundColor: MainTheme.accent,
+                  backgroundColor:
+                      Theme.of(context).colorScheme.tertiaryContainer,
                   onPressed: () {
                     showModalBottomSheet<void>(
                         context: context,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.0),
                         ),
-                        backgroundColor: MainTheme.backgroundColor,
+                        backgroundColor:
+                            Theme.of(context).colorScheme.background,
                         builder: (BuildContext context) {
                           return AddUserContextModal(
                             cubit: cubit,
                           );
                         });
                   },
-                  child: const Icon(
+                  child: Icon(
                     Icons.add,
-                    color: MainTheme.primary,
+                    color: Theme.of(context).colorScheme.onTertiaryContainer,
                   ),
                 ),
               ),
@@ -108,25 +114,28 @@ class _AddUserContextModalState extends State<AddUserContextModal> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: _controller,
-              cursorColor: MainTheme.primary,
-              decoration: const InputDecoration(
+              cursorColor: Theme.of(context).colorScheme.primary,
+              decoration: InputDecoration(
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: MainTheme.primary),
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: MainTheme.primary),
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: MainTheme.primary),
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary),
                   ),
                   labelText: 'Nazwa',
-                  labelStyle: TextStyle(color: MainTheme.secondary)),
+                  labelStyle: const TextStyle(color: MainTheme.secondary)),
             ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: MainTheme.accent,
-                foregroundColor: MainTheme.primary),
+                foregroundColor: Theme.of(context).colorScheme.primary),
             onPressed: () {
               showDialog(
                 context: context,
@@ -156,7 +165,7 @@ class _AddUserContextModalState extends State<AddUserContextModal> {
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: MainTheme.accent,
-                foregroundColor: MainTheme.primary),
+                foregroundColor: Theme.of(context).colorScheme.primary),
             onPressed: () {
               widget.cubit.addNewContext(
                 UserContext(
@@ -177,12 +186,12 @@ class ContextTile extends StatelessWidget {
   final UserContext? userContext;
   final Function()? onTap;
   final bool selectedContext;
-  const ContextTile(
-      {Key? key,
-      required this.userContext,
-      required this.onTap,
-      required this.selectedContext})
-      : super(key: key);
+  const ContextTile({
+    Key? key,
+    required this.userContext,
+    required this.onTap,
+    required this.selectedContext,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -193,8 +202,11 @@ class ContextTile extends StatelessWidget {
         child: Container(
           decoration: selectedContext
               ? BoxDecoration(
-                  border: Border.all(color: MainTheme.secondary),
-                  borderRadius: BorderRadius.circular(4))
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                  borderRadius: BorderRadius.circular(4),
+                )
               : null,
           child: Padding(
             padding: const EdgeInsets.all(4.0),
@@ -204,13 +216,17 @@ class ContextTile extends StatelessWidget {
                   width: 16,
                   height: 16,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: userContext?.contextColor),
+                    shape: BoxShape.circle,
+                    color: userContext?.contextColor,
+                  ),
                 ),
                 const SizedBox(width: 8),
                 Text(
                   userContext?.contextName ?? 'Wszystkie',
-                  style: const TextStyle(color: MainTheme.secondary),
-                )
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                ),
               ],
             ),
           ),

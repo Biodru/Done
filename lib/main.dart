@@ -1,3 +1,4 @@
+import 'package:done/core/presentation/theme/color_schemes.g.dart';
 import 'package:done/features/bottom_bar/presentation/cubit/cubit/bottom_bar_cubit.dart';
 import 'package:done/features/bottom_bar/presentation/home_page.dart';
 import 'package:done/features/user_context/presentation/cubit/cubit/user_context_cubit.dart';
@@ -17,6 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: lightColorScheme,
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: darkColorScheme,
+      ),
       home: MultiBlocProvider(
         providers: [
           BlocProvider<UserContextCubit>(

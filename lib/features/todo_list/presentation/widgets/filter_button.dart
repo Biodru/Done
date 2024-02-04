@@ -1,4 +1,3 @@
-import 'package:done/config/theme/main_theme.dart';
 import 'package:flutter/material.dart';
 
 class FilterButton extends StatefulWidget {
@@ -32,30 +31,31 @@ class _FilterButtonState extends State<FilterButton> {
       },
       icon: Icon(
         widget.icon,
-        color: MainTheme.secondary,
+        color: Theme.of(context).colorScheme.primary,
       ),
       label: Row(
         children: [
           Text(
             widget.buttonTitle,
-            style: const TextStyle(color: MainTheme.secondary),
+            style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
           ),
           widget.counter != 0
               ? AnimatedRotation(
                   duration: const Duration(milliseconds: 360),
                   turns: _turns,
-                  child: const Icon(
+                  child: Icon(
                     Icons.arrow_upward,
-                    color: MainTheme.secondary,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 )
               : const SizedBox(),
         ],
       ),
       style: OutlinedButton.styleFrom(
-        backgroundColor: MainTheme.backgroundColor,
-        foregroundColor: MainTheme.secondary,
-        side: const BorderSide(color: MainTheme.secondary),
+        elevation: 3,
+        backgroundColor: Theme.of(context).colorScheme.background,
+        foregroundColor: Theme.of(context).colorScheme.primary,
+        side: BorderSide(color: Theme.of(context).colorScheme.onBackground),
       ),
     );
   }

@@ -38,11 +38,10 @@ class _EditNotePageState extends State<EditNotePage> {
   Widget build(BuildContext context) {
     final userContextCubit = context.watch<UserContextCubit>();
     final cubit = context.watch<NotesListCubit>();
-
-    //_prepareView(userContextCubit);
+    final theme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: widget.note?.chosenColor ?? MainTheme.backgroundColor,
+      backgroundColor: widget.note?.chosenColor ?? theme.background,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -70,7 +69,7 @@ class _EditNotePageState extends State<EditNotePage> {
                   //MARK: Title Editor
                   TextField(
                     controller: _titleController,
-                    style: const TextStyle(color: Colors.black, fontSize: 32),
+                    style: TextStyle(color: theme.onBackground, fontSize: 32),
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: widget.note?.topic ?? 'Tutaj wpisz tytuł'),
@@ -78,7 +77,7 @@ class _EditNotePageState extends State<EditNotePage> {
                   //MARK: Description Editor
                   TextField(
                     controller: _descriptionController,
-                    style: const TextStyle(color: Colors.black, fontSize: 24),
+                    style: TextStyle(color: theme.onBackground, fontSize: 24),
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText:
@@ -87,8 +86,10 @@ class _EditNotePageState extends State<EditNotePage> {
                   //MARK: ColorPicker
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: MainTheme.accent,
-                        foregroundColor: MainTheme.primary),
+                      elevation: 2,
+                      backgroundColor: theme.primaryContainer,
+                      foregroundColor: theme.onPrimaryContainer,
+                    ),
                     onPressed: () {
                       showDialog(
                         context: context,
@@ -120,8 +121,8 @@ class _EditNotePageState extends State<EditNotePage> {
                   DropdownButton<int?>(
                     items: _items,
                     onChanged: _dropdownCallback,
-                    dropdownColor: MainTheme.accent,
-                    iconDisabledColor: MainTheme.primary,
+                    dropdownColor: theme.tertiary,
+                    iconDisabledColor: theme.onError,
                     hint: const Text('Profil: '),
                     value: _selectedContext,
                   ),
@@ -178,10 +179,10 @@ class _EditNotePageState extends State<EditNotePage> {
             ? userContextCubit
                 .findContext(widget.note!.userContextId!)!
                 .contextColor
-            : MainTheme.secondary,
+            : theme.tertiaryContainer,
         child: Icon(
           Icons.save_sharp,
-          color: widget.note?.chosenColor ?? MainTheme.primary,
+          color: widget.note?.chosenColor ?? theme.onTertiaryContainer,
         ),
       ),
     );

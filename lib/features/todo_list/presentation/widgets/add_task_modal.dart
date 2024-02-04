@@ -39,6 +39,8 @@ class _AddTaskModalState extends State<AddTaskModal> {
   Widget build(BuildContext context) {
     final cubit = context.watch<TaskListCubit>();
     final userContextCubit = context.watch<UserContextCubit>();
+    final theme = Theme.of(context).colorScheme;
+
     _prepareView(userContextCubit);
 
     return Padding(
@@ -49,19 +51,20 @@ class _AddTaskModalState extends State<AddTaskModal> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               controller: _controller,
-              cursorColor: MainTheme.primary,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: MainTheme.primary),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: MainTheme.primary),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: MainTheme.primary),
-                  ),
-                  labelText: 'Nazwa',
-                  labelStyle: TextStyle(color: MainTheme.secondary)),
+              cursorColor: theme.primary,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: theme.secondary),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: theme.primary),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: theme.primary),
+                ),
+                labelText: 'Nazwa',
+                labelStyle: TextStyle(color: theme.outline),
+              ),
             ),
           ),
           const Text('Wybierz profil'),
@@ -69,14 +72,14 @@ class _AddTaskModalState extends State<AddTaskModal> {
             items: items,
             onChanged: dropdownCallback,
             dropdownColor: MainTheme.accent,
-            iconDisabledColor: MainTheme.primary,
+            iconDisabledColor: Theme.of(context).colorScheme.primary,
             hint: const Text('Profil: '),
             value: _selectedContext,
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: MainTheme.accent,
-                foregroundColor: MainTheme.primary),
+                foregroundColor: Theme.of(context).colorScheme.primary),
             onPressed: () async {
               _selectedDate = await _selectDate();
             },
@@ -84,8 +87,9 @@ class _AddTaskModalState extends State<AddTaskModal> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-                backgroundColor: MainTheme.accent,
-                foregroundColor: MainTheme.primary),
+              backgroundColor: MainTheme.accent,
+              foregroundColor: theme.primary,
+            ),
             onPressed: () {
               showDialog(
                 context: context,
@@ -133,14 +137,14 @@ class _AddTaskModalState extends State<AddTaskModal> {
             ],
             onChanged: dropdownPriorityCallback,
             dropdownColor: MainTheme.accent,
-            iconDisabledColor: MainTheme.primary,
+            iconDisabledColor: Theme.of(context).colorScheme.primary,
             hint: const Text('Priorytet: '),
             value: _selectedPriority,
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: MainTheme.accent,
-                foregroundColor: MainTheme.primary),
+                foregroundColor: Theme.of(context).colorScheme.primary),
             onPressed: () {
               cubit.addNewTask(
                 Task(

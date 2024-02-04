@@ -1,3 +1,4 @@
+import 'package:done/core/presentation/widgets/app_card_widget.dart';
 import 'package:done/features/notes/data/models/note.dart';
 import 'package:done/features/notes/presentation/cubit/notes_list_cubit.dart';
 import 'package:done/features/notes/presentation/pages/edit_note_page.dart';
@@ -106,6 +107,99 @@ class NoteTileWidget extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class NoteForSelectedContext extends StatelessWidget {
+  const NoteForSelectedContext({super.key, required this.note});
+
+  final Note note;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCardWidgetAllContexts(
+      cardBody: _NoteBodyForSelectedContext(
+        note: note,
+      ),
+      borderColor: null,
+    );
+  }
+}
+
+class _NoteBodyForSelectedContext extends StatelessWidget {
+  const _NoteBodyForSelectedContext({super.key, required this.note});
+
+  final Note note;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RichText(
+              text: TextSpan(
+                text: '${note.topic}\n',
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  height: 1.5,
+                ),
+                children: [
+                  TextSpan(
+                    text: note.description,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 12,
+                      height: 1.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Edytowano: ${DateFormat('dd/mm/yyyy hh:mm').format(note.lastEdited ?? DateTime.now())}',
+              style: const TextStyle(
+                fontSize: 8,
+                fontStyle: FontStyle.italic,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.delete_forever,
+            color: Colors.red,
+          ),
+          onPressed: () {
+            //TODO: Add deletion
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class NoteForAllContexts extends StatelessWidget {
+  const NoteForAllContexts({super.key, required this.note});
+
+  final Note note;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCardWidgetAllContexts(
+      currentUserContext: context.watch<UserContextCubit>().findContext(
+            note.userContextId ?? 0,
+          ),
+      cardBody: _NoteBodyForSelectedContext(note: note),
+      borderColor: null,
     );
   }
 }

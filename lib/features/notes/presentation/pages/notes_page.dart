@@ -57,14 +57,32 @@ class _NotesNoErrorWrapper extends StatelessWidget {
         ? cubit.state.notes.where((element) =>
             element.userContextId == contextCubit.state.currentContextId)
         : cubit.state.notes;
-    return ListView(
-      children: list
-          .map(
-            (note) => NoteTileWidget(
-              note: note,
-            ),
-          )
-          .toList(),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: list
+            .map(
+              (task) => contextCubit.state.currentContextId == null
+                  ? NoteForAllContexts(
+                      note: task,
+                    )
+                  : NoteForSelectedContext(
+                      note: task,
+                    ),
+            )
+            .toList(),
+      ),
     );
+    // return ListView(
+    //   children: list
+    //       .map(
+    //         (note) => contextCubit.state.currentContextId == null
+    //             ? NoteForAllContexts(note: note)
+    //             : NoteForSelectedContext(
+    //                 note: note,
+    //               ),
+    //       )
+    //       .toList(),
+    // );
   }
 }

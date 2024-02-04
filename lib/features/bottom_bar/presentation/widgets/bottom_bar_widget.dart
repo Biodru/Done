@@ -1,5 +1,3 @@
-import 'package:done/config/theme/main_theme.dart';
-import 'package:done/core/util/app_theme_properties.dart';
 import 'package:done/features/bottom_bar/presentation/cubit/cubit/bottom_bar_cubit.dart';
 import 'package:done/features/bottom_bar/presentation/widgets/bottom_bar_button.dart';
 import 'package:flutter/material.dart';
@@ -14,17 +12,17 @@ class BottomBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.watch<BottomBarCubit>();
 
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              AppThemeProperties.shadow,
-            ],
-          ),
+    return Container(
+      color: Colors.transparent,
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: CustomPaint(
-            painter: _NotchedBottomBarPainter(bottomWidth: 50),
+            painter: _NotchedBottomBarPainter(
+              bottomWidth: 60,
+              bottomBarColor: Theme.of(context).colorScheme.primaryContainer,
+              backgroundColor: Theme.of(context).colorScheme.background,
+            ),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,13 +51,19 @@ class BottomBarWidget extends StatelessWidget {
 }
 
 class _NotchedBottomBarPainter extends CustomPainter {
-  _NotchedBottomBarPainter({required this.bottomWidth});
+  _NotchedBottomBarPainter({
+    required this.bottomWidth,
+    required this.bottomBarColor,
+    required this.backgroundColor,
+  });
 
   final double bottomWidth;
+  final Color bottomBarColor;
+  final Color backgroundColor;
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint backgroundPaint = Paint()..color = MainTheme.accent;
+    Paint backgroundPaint = Paint()..color = bottomBarColor;
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         Rect.fromPoints(
@@ -79,7 +83,7 @@ class _NotchedBottomBarPainter extends CustomPainter {
     double right = left + holeWidth;
     double bottom = top + holeHeight;
 
-    Paint holePaint = Paint()..color = MainTheme.backgroundColor;
+    Paint holePaint = Paint()..color = backgroundColor;
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         Rect.fromLTRB(left, top, right, bottom),

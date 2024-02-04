@@ -1,4 +1,3 @@
-import 'package:done/config/theme/main_theme.dart' as app_theme;
 import 'package:flutter/material.dart';
 
 typedef FunctionWithInteger = Function(int);
@@ -25,7 +24,9 @@ class BottomBarButton extends StatelessWidget {
       onPressed: () => onTap(buttonIndex),
       icon: Icon(
         currentIndex == buttonIndex ? selectedIcon : unselectedIcon,
-        color: currentIndex == buttonIndex ? app_theme.MainTheme.primary : null,
+        color: currentIndex == buttonIndex
+            ? Theme.of(context).colorScheme.onPrimary
+            : Theme.of(context).colorScheme.onPrimaryContainer,
       ),
     );
   }

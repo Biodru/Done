@@ -42,72 +42,70 @@ class HomePage extends StatelessWidget {
         builder: (context, state) {
           final bottomBarCubit = context.watch<BottomBarCubit>();
           return Scaffold(
-            floatingActionButton: Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                boxShadow: [AppThemeProperties.shadow],
+            floatingActionButton: FloatingActionButton(
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
               ),
-              child: FloatingActionButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                backgroundColor: MainTheme.accent,
-                onPressed: () {
-                  if (state.pageIndex == 0) {
-                    showModalBottomSheet<void>(
-                      context: context,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.0),
-                      ),
-                      backgroundColor: MainTheme.backgroundColor,
+              backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+              onPressed: () {
+                if (state.pageIndex == 0) {
+                  showModalBottomSheet<void>(
+                    context: context,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    backgroundColor: Theme.of(context).colorScheme.background,
+                    builder: (_) {
+                      return BlocProvider.value(
+                        value: context.watch<TaskListCubit>(),
+                        child: BlocProvider.value(
+                          value: context.watch<UserContextCubit>(),
+                          child: const AddTaskModal(),
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
                       builder: (_) {
                         return BlocProvider.value(
-                          value: context.watch<TaskListCubit>(),
+                          value: context.watch<NotesListCubit>(),
                           child: BlocProvider.value(
                             value: context.watch<UserContextCubit>(),
-                            child: const AddTaskModal(),
+                            child: const EditNotePage(note: null),
                           ),
                         );
                       },
-                    );
-                  } else {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (_) {
-                          return BlocProvider.value(
-                            value: context.watch<NotesListCubit>(),
-                            child: BlocProvider.value(
-                              value: context.watch<UserContextCubit>(),
-                              child: const EditNotePage(note: null),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  }
-                },
-                child: const Icon(
-                  Icons.add,
-                  color: MainTheme.primary,
-                ),
+                    ),
+                  );
+                }
+              },
+              child: Icon(
+                Icons.add,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             extendBody: true,
-            backgroundColor: MainTheme.backgroundColor,
-            drawerScrimColor: MainTheme.secondary,
+            backgroundColor: Theme.of(context).colorScheme.background,
+            drawerScrimColor: Theme.of(context).colorScheme.surfaceVariant,
             endDrawer: const UserContextDrawer(),
             appBar: AppBar(
               title: Text(
                 bottomBarCubit.getAppBarTitle(),
-                style: const TextStyle(color: MainTheme.secondary),
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
               ),
-              iconTheme: const IconThemeData(color: MainTheme.secondary),
-              elevation: 1,
-              backgroundColor: MainTheme.backgroundColor,
+              iconTheme: IconThemeData(
+                color: Theme.of(context).colorScheme.tertiary,
+              ),
+              elevation: 0,
+              backgroundColor: Theme.of(context).colorScheme.background,
             ),
             bottomNavigationBar: const BottomBarWidget(),
             body: pages[state.pageIndex],

@@ -44,8 +44,8 @@ class NotesListCubit extends Cubit<NotesListState> {
 
   void _deleteNote(int index) {
     //TODO: Add deletion inDatabase
-    List<Note> _tmp = state.notes;
-    _tmp.removeAt(index);
-    emit(state.copyWith(notes: _tmp));
+    List<Note> tmp = state.notes;
+    tmp.removeAt(index);
+    emit(state.copyWith(notes: tmp));
   }
 }
