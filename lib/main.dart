@@ -1,3 +1,4 @@
+import 'package:done/features/bottom_bar/presentation/cubit/cubit/bottom_bar_cubit.dart';
 import 'package:done/features/bottom_bar/presentation/home_page.dart';
 import 'package:done/features/user_context/presentation/cubit/cubit/user_context_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -16,8 +17,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider<UserContextCubit>(
-        create: (context) => UserContextCubit(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<UserContextCubit>(
+            create: (context) => UserContextCubit(),
+          ),
+          BlocProvider<BottomBarCubit>(
+            create: (context) => BottomBarCubit(),
+          ),
+        ],
         child: BlocBuilder<UserContextCubit, UserContextState>(
           buildWhen: (previous, current) =>
               previous.currentContextId != current.currentContextId,

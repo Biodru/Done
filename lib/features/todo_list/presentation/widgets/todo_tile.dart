@@ -51,8 +51,9 @@ class TodoTile extends StatelessWidget {
                         left: BorderSide(
                           color: task.userContextId != null
                               ? userContextCubit
-                                  .findContext(task.userContextId!)!
-                                  .contextColor
+                                      .findContext(task.userContextId!)
+                                      ?.contextColor ??
+                                  MainTheme.primary
                               : task.chosenColor ?? MainTheme.primary,
                           width: 12,
                         ),

@@ -16,6 +16,7 @@ class Note {
     this.description,
     this.userContextId,
     this.chosenColor,
+    this.createdTime,
     this.lastEdited,
   });
 
@@ -24,6 +25,7 @@ class Note {
   final String? description;
   final int? userContextId;
   final Color? chosenColor;
+  final DateTime? createdTime;
   final DateTime? lastEdited;
 
   factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);

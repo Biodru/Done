@@ -24,7 +24,7 @@ class BottomBarWidget extends StatelessWidget {
             ],
           ),
           child: CustomPaint(
-            painter: _NotchedBottomBarPainter(buttomWidth: 50),
+            painter: _NotchedBottomBarPainter(bottomWidth: 50),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,9 +53,9 @@ class BottomBarWidget extends StatelessWidget {
 }
 
 class _NotchedBottomBarPainter extends CustomPainter {
-  _NotchedBottomBarPainter({required this.buttomWidth});
+  _NotchedBottomBarPainter({required this.bottomWidth});
 
-  final double buttomWidth;
+  final double bottomWidth;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -71,7 +71,7 @@ class _NotchedBottomBarPainter extends CustomPainter {
       backgroundPaint,
     );
 
-    double holeWidth = buttomWidth + 10;
+    double holeWidth = bottomWidth + 10;
     double holeHeight = 50.0;
 
     double left = (size.width - holeWidth) / 2;

@@ -1,8 +1,10 @@
 import 'package:done/features/notes/data/models/note.dart';
+import 'package:done/features/notes/presentation/cubit/notes_list_cubit.dart';
 import 'package:done/features/notes/presentation/pages/edit_note_page.dart';
 import 'package:done/features/user_context/presentation/cubit/cubit/user_context_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class NoteTileWidget extends StatelessWidget {
   const NoteTileWidget({
@@ -21,10 +23,13 @@ class NoteTileWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute<void>(
-            builder: (BuildContext context) {
+            builder: (_) {
               return BlocProvider.value(
-                value: userContextCubit,
-                child: EditNotePage(note: note),
+                value: context.watch<NotesListCubit>(),
+                child: BlocProvider.value(
+                  value: context.watch<UserContextCubit>(),
+                  child: EditNotePage(note: note),
+                ),
               );
             },
           ),
@@ -78,7 +83,7 @@ class NoteTileWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Edytowano: ${note.lastEdited?.toString() ?? ''}',
+                      'Edytowano: ${DateFormat('dd/mm/yyyy hh:mm').format(note.lastEdited ?? DateTime.now())}',
                       style: const TextStyle(
                         fontSize: 10,
                         fontStyle: FontStyle.italic,
